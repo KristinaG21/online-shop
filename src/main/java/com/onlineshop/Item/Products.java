@@ -13,7 +13,7 @@ public class Products {
     @GeneratedValue
     private int id;
 
-    @NotNull()
+    @NotNull
     private String name;
 
     @NotNull
@@ -24,8 +24,7 @@ public class Products {
     public Products() {
     }
 
-    public Products(int id, String name, Double price, String pictureUrl) {
-        this.id = id;
+    public Products( String name, Double price, String pictureUrl) {
         this.name = name;
         this.price = price;
         this.pictureUrl = pictureUrl;

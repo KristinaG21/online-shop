@@ -3,11 +3,12 @@ package com.onlineshop.Mapper;
 import com.onlineshop.DTO.ProductDto;
 import com.onlineshop.Item.Products;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
+import java.lang.reflect.Type;
 import java.text.ParseException;
-import java.util.Collections;
 import java.util.List;
 
 @Component
@@ -18,14 +19,21 @@ public class ProductMapper {
         return new ModelMapper();
     }
 
-    public List<ProductDto> convertToDto(Products product) {
+    public ProductDto convertToDto(Products product) {
         ProductDto productDto = modelMapper().map(product, ProductDto.class);
-        return Collections.singletonList(productDto);
+        return productDto;
 
     }
 
-    public List<Products> convertToEntity(ProductDto postDto) throws ParseException {
+    public Products convertToEntity(ProductDto postDto) throws ParseException {
         Products product = modelMapper().map(postDto, Products.class);
-        return Collections.singletonList(product);
+        return product;
+    }
+
+    public List<ProductDto> convertEntityToDTOList(List<Products> products) {
+        Type listType = new TypeToken<List<ProductDto>>() {}.getType();
+        List<ProductDto> productDtoList = modelMapper().map(products, listType);
+        return productDtoList;
+
     }
 }
