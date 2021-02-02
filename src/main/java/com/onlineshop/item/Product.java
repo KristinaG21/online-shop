@@ -1,4 +1,4 @@
-package com.onlineshop.Item;
+package com.onlineshop.item;
 
 import com.sun.istack.NotNull;
 
@@ -7,7 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-public class Products {
+public class Product {
 
     @Id
     @GeneratedValue
@@ -21,10 +21,10 @@ public class Products {
 
     private String pictureUrl;
 
-    public Products() {
+    public Product() {
     }
 
-    public Products( String name, Double price, String pictureUrl) {
+    public Product(String name, Double price, String pictureUrl) {
         this.name = name;
         this.price = price;
         this.pictureUrl = pictureUrl;

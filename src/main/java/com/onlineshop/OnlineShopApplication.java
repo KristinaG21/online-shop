@@ -1,7 +1,8 @@
 package com.onlineshop;
 
-import com.onlineshop.Item.Products;
-import com.onlineshop.ProductRepository.ProductRepository;
+import com.onlineshop.item.Product;
+import com.onlineshop.repository.ProductRepository;
+import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -21,15 +22,15 @@ public class OnlineShopApplication {
 
 	@Bean
 	public CommandLineRunner runner(ProductRepository repository) {
-		return (args) -> {
-			repository.save(new Products("SIM", 35.00,"www.sim.com"));
-			repository.save(new Products("Apple Phone", 1200.00,"www.apple.com"));
-			repository.save(new Products("Apple Watch", 450.00,"www.apple.com"));
+		return args -> {
+			repository.save(new Product("SIM", 35.00,"www.sim.com"));
+			repository.save(new Product("Apple Phone", 1200.00,"www.apple.com"));
+			repository.save(new Product("Apple Watch", 450.00,"www.apple.com"));
 
 
-			repository.findAll().forEach(products -> {
-				log.info("Products: {}", products);
-			});
+			repository.findAll().forEach(products ->
+				log.info("Products: {}", products));
+
 		};
 	}
 

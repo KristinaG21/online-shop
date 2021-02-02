@@ -1,7 +1,7 @@
-package com.onlineshop.Mapper;
+package com.onlineshop.mapper;
 
 import com.onlineshop.DTO.ProductDto;
-import com.onlineshop.Item.Products;
+import com.onlineshop.item.Product;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
@@ -21,9 +21,8 @@ public class ProductMapperTest {
 
     @Test
     public void whenConvertProductsToProductsDto() {
-        Products products = new Products("SIM",20.00,"www.test.com");
-
-        ProductDto productDto = mapper.convertToDto(products);
+        Product product = new Product("SIM",20.00,"www.test.com");
+        ProductDto productDto = mapper.convertToDto(product);
         assertEquals("SIM",productDto.getName());
         assertEquals(20,00, productDto.getPrice());
         assertEquals("www.test.com", productDto.getPictureUrl());
@@ -36,7 +35,7 @@ public class ProductMapperTest {
         productDto.setPrice(20.00);
         productDto.setPictureUrl("www.test.com");
 
-        Products products = null;
+        Product products = null;
         try {
             products = mapper.convertToEntity(productDto);
         } catch (ParseException e) {
@@ -49,7 +48,7 @@ public class ProductMapperTest {
 
     @Test
     public void whenConvertProductsListToProductsDtoList() {
-        List<Products> products = Collections.singletonList(new Products( "SIM", 20.00, "www.test.com"));
+        List<Product> products = Collections.singletonList(new Product( "SIM", 20.00, "www.test.com"));
 
         List<ProductDto> productDto = mapper.convertEntityToDTOList(products);
         assertEquals("SIM",productDto.get(0).getName());
